@@ -1,0 +1,56 @@
+---
+title: 'Formula 1: Lap Times'
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+                    encoding=encoding, 
+                    output_file=file.path(dirname(input_file), out_dir, 'index.html'))
+  })
+author: "John Goodwin"
+date: "5/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(plotly)
+library(tidyverse)
+```
+
+```{r load_data, include=FALSE}
+lap_times <- read_csv("./data/lap_times.csv")
+races <- read_csv("./data/races.csv")
+drivers <- read_csv("./data/drivers.csv")
+
+races <- races %>%
+  select(raceId, year, name) %>%
+  rename(race_name = name)
+
+drivers <- drivers %>%
+  mutate(driver_name = paste(forename, surname)) %>%
+  select(driverId, driver_name)
+
+lap_times <- lap_times %>%
+  mutate(lap_time = milliseconds * 0.001) %>%
+  left_join(races, by = "raceId") %>%
+  left_join(drivers, by = "driverId") %>%
+  select(year, race_name, driver_name, lap, lap_time)
+```
+
+## Intro
+
+This document leverages data from the [Formula 1 World Championship (1950 - 2021) Kaggle Project](https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020) and the `plotly` R package to plot the ************************************* 
+
+## Plot
+
+```{r plot, echo=FALSE}
+lap_times %>%
+  filter(year == 2011,
+         race_name == 'Australian Grand Prix',
+         driver_name == 'Sebastian Vettel')  %>%
+  plot_ly(x = ~ lap, y = ~lap_time, name = 'lt', type = 'scatter', mode = 'lines+markers') %>%
+  layout(title = "Lap Time by Lap Number",
+         xaxis = list(title = "Lap Number"),
+         yaxis = list(title = "Lap Time (seconds)"))
+```
+
