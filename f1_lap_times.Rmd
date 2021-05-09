@@ -15,6 +15,7 @@ output: slidy_presentation
 knitr::opts_chunk$set(echo = TRUE)
 library(plotly)
 library(tidyverse)
+library(kableExtra)
 ```
 
 ```{r load_data, include=FALSE}
@@ -50,6 +51,24 @@ lap_times <- lap_times %>%
 ## Intro
 
 This document leverages data from the [Formula 1 World Championship (1950 - 2021) Kaggle Project](https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020) and the `plotly` R package to plot the lap times for the top 3 finishers in all of the 2020 Formula 1 races.
+
+## The Drivers
+
+Formula 1 stats often use the 3 letter abbreviation for driver's names. The following table gives the abbreviations for each of the 2020 drivers:
+
+```{r drivers, echo = FALSE}
+lap_times %>% 
+  filter(year == 2020) %>%
+  select(name_code, driver_name) %>%
+  unique %>%
+  arrange(name_code) %>%
+  rename(`Name Abbreviation` = name_code,
+         `Driver Name` = driver_name) %>%
+  kable() %>%
+  kable_styling() %>%
+  scroll_box(width = "650px", height = "600px")
+```
+
 
 ## R Function for Plotting
 
