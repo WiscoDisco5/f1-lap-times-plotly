@@ -8,7 +8,7 @@ knit: (function(input_file, encoding) {
   })
 author: "John Goodwin"
 date: "5/7/2021"
-output: html_document
+output: slidy_presentation
 ---
 
 ```{r setup, include=FALSE}
