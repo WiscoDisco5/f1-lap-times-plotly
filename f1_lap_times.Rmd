@@ -21,6 +21,7 @@ library(tidyverse)
 lap_times <- read_csv("./data/lap_times.csv")
 races <- read_csv("./data/races.csv")
 drivers <- read_csv("./data/drivers.csv")
+results <- read_csv("./data/results.csv")
 
 races <- races %>%
   select(raceId, year, name) %>%
@@ -28,29 +29,50 @@ races <- races %>%
 
 drivers <- drivers %>%
   mutate(driver_name = paste(forename, surname)) %>%
-  select(driverId, driver_name)
+  select(driverId, driver_name, code) %>%
+  rename(name_code = code)
+
+## Old races allowed drivers to switch between 1 constructor's vehicles in races
+## so we need to dedup to ensure join doesn't blow up
+results <- results %>%
+  group_by(raceId, driverId) %>%
+  summarise(final_position = min(positionOrder))
 
 lap_times <- lap_times %>%
   mutate(lap_time = milliseconds * 0.001) %>%
   left_join(races, by = "raceId") %>%
   left_join(drivers, by = "driverId") %>%
-  select(year, race_name, driver_name, lap, lap_time)
+  left_join(results, by = c("raceId", "driverId")) %>%
+  select(year, race_name, driver_name, name_code, lap, lap_time, final_position)
+
 ```
 
 ## Intro
 
 This document leverages data from the [Formula 1 World Championship (1950 - 2021) Kaggle Project](https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020) and the `plotly` R package to plot the ************************************* 
 
-## Plot
+## Austrian Grand Prix
 
 ```{r plot, echo=FALSE}
-lap_times %>%
-  filter(year == 2011,
-         race_name == 'Australian Grand Prix',
-         driver_name == 'Sebastian Vettel')  %>%
-  plot_ly(x = ~ lap, y = ~lap_time, name = 'lt', type = 'scatter', mode = 'lines+markers') %>%
-  layout(title = "Lap Time by Lap Number",
-         xaxis = list(title = "Lap Number"),
-         yaxis = list(title = "Lap Time (seconds)"))
+plot_lap_times <- function(plot_race_name) {
+  lap_times %>%
+    filter(year == 2020,
+           race_name == plot_race_name,
+           final_position <= 3)  %>%
+    mutate(name_place = paste(final_position, "-", name_code)) %>%
+    plot_ly(data = .,
+            x = ~lap, 
+            y = ~lap_time, 
+            type = 'scatter', 
+            mode = 'lines+markers',
+            color = ~name_place) %>%
+    layout(title = paste("Lap Times for Top 3 Drivers:", plot_race_name),
+           xaxis = list(title = "Lap Number"),
+           yaxis = list(title = "Lap Time (seconds)"),
+           hovermode = "x unified",
+           legend = list(x = 0.1, y = 0.9))
+}
+
+plot_lap_times("Austrian Grand Prix")
 ```
 
