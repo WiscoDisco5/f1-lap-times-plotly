@@ -49,11 +49,13 @@ lap_times <- lap_times %>%
 
 ## Intro
 
-This document leverages data from the [Formula 1 World Championship (1950 - 2021) Kaggle Project](https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020) and the `plotly` R package to plot the ************************************* 
+This document leverages data from the [Formula 1 World Championship (1950 - 2021) Kaggle Project](https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020) and the `plotly` R package to plot the lap times for the top 3 finishers in all of the 2020 Formula 1 races.
 
-## Austrian Grand Prix
+## R Function for Plotting
 
-```{r plot, echo=FALSE}
+The following R function uses `plotly` to plot the lap times for the top 3 drivers. The pre-procesing of the `lap_times` data can be found in the [RMD doc](https://github.com/WiscoDisco5/f1-lap-times-plotly/blob/main/f1_lap_times.Rmd) which made this slidy presentation. The next slides use this function to plot the lap times for the 2020 F1 races.
+
+```{r plot_function}
 plot_lap_times <- function(plot_race_name) {
   lap_times %>%
     filter(year == 2020,
@@ -66,13 +68,113 @@ plot_lap_times <- function(plot_race_name) {
             type = 'scatter', 
             mode = 'lines+markers',
             color = ~name_place) %>%
-    layout(title = paste("Lap Times for Top 3 Drivers:", plot_race_name),
+    layout(title = paste("Lap Times for Top 3 Drivers: 2020", plot_race_name),
            xaxis = list(title = "Lap Number"),
            yaxis = list(title = "Lap Time (seconds)"),
            hovermode = "x unified",
            legend = list(x = 0.1, y = 0.9))
 }
+```
 
-plot_lap_times("Austrian Grand Prix")
+## Austrian Grand Prix
+
+```{r Austrian_Grand_Prix, echo=FALSE}
+plot_lap_times('Austrian Grand Prix')
+```
+
+## Styrian Grand Prix
+
+```{r Styrian_Grand_Prix, echo=FALSE}
+plot_lap_times('Styrian Grand Prix')
+```
+
+## Hungarian Grand Prix
+
+```{r Hungarian_Grand_Prix, echo=FALSE}
+plot_lap_times('Hungarian Grand Prix')
+```
+
+## British Grand Prix
+
+```{r British_Grand_Prix, echo=FALSE}
+plot_lap_times('British Grand Prix')
+```
+
+## 70th Anniversary Grand Prix
+
+```{r 70th_Anniversary_Grand_Prix, echo=FALSE}
+plot_lap_times('70th Anniversary Grand Prix')
+```
+
+## Spanish Grand Prix
+
+```{r Spanish_Grand_Prix, echo=FALSE}
+plot_lap_times('Spanish Grand Prix')
+```
+
+## Belgian Grand Prix
+
+```{r Belgian_Grand_Prix, echo=FALSE}
+plot_lap_times('Belgian Grand Prix')
+```
+
+## Italian Grand Prix
+
+```{r Italian_Grand_Prix, echo=FALSE}
+plot_lap_times('Italian Grand Prix')
+```
+
+## Tuscan Grand Prix
+
+```{r Tuscan_Grand_Prix, echo=FALSE}
+plot_lap_times('Tuscan Grand Prix')
+```
+
+## Russian Grand Prix
+
+```{r Russian_Grand_Prix, echo=FALSE}
+plot_lap_times('Russian Grand Prix')
+```
+
+## Eifel Grand Prix
+
+```{r Eifel_Grand_Prix, echo=FALSE}
+plot_lap_times('Eifel Grand Prix')
+```
+
+## Portuguese Grand Prix
+
+```{r Portuguese_Grand_Prix, echo=FALSE}
+plot_lap_times('Portuguese Grand Prix')
+```
+
+## Emilia Romagna Grand Prix
+
+```{r Emilia_Romagna_Grand_Prix, echo=FALSE}
+plot_lap_times('Emilia Romagna Grand Prix')
+```
+
+## Turkish Grand Prix
+
+```{r Turkish_Grand_Prix, echo=FALSE}
+plot_lap_times('Turkish Grand Prix')
+```
+
+## Bahrain Grand Prix
+
+```{r Bahrain_Grand_Prix, echo=FALSE}
+plot_lap_times('Bahrain Grand Prix')
+```
+
+## Sakhir Grand Prix
+
+```{r Sakhir_Grand_Prix, echo=FALSE}
+plot_lap_times('Sakhir Grand Prix')
+```
+
+## Abu Dhabi Grand Prix
+
+```{r Abu_Dhabi_Grand_Prix, echo=FALSE}
+plot_lap_times('Abu Dhabi Grand Prix')
 ```
 

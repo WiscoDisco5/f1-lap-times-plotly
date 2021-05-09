@@ -1,0 +1,102 @@
+## Austrian Grand Prix
+
+```{r Austrian_Grand_Prix, echo=FALSE}
+plot_lap_times('Austrian Grand Prix')
+```
+
+## Styrian Grand Prix
+
+```{r Styrian_Grand_Prix, echo=FALSE}
+plot_lap_times('Styrian Grand Prix')
+```
+
+## Hungarian Grand Prix
+
+```{r Hungarian_Grand_Prix, echo=FALSE}
+plot_lap_times('Hungarian Grand Prix')
+```
+
+## British Grand Prix
+
+```{r British_Grand_Prix, echo=FALSE}
+plot_lap_times('British Grand Prix')
+```
+
+## 70th Anniversary Grand Prix
+
+```{r 70th_Anniversary_Grand_Prix, echo=FALSE}
+plot_lap_times('70th Anniversary Grand Prix')
+```
+
+## Spanish Grand Prix
+
+```{r Spanish_Grand_Prix, echo=FALSE}
+plot_lap_times('Spanish Grand Prix')
+```
+
+## Belgian Grand Prix
+
+```{r Belgian_Grand_Prix, echo=FALSE}
+plot_lap_times('Belgian Grand Prix')
+```
+
+## Italian Grand Prix
+
+```{r Italian_Grand_Prix, echo=FALSE}
+plot_lap_times('Italian Grand Prix')
+```
+
+## Tuscan Grand Prix
+
+```{r Tuscan_Grand_Prix, echo=FALSE}
+plot_lap_times('Tuscan Grand Prix')
+```
+
+## Russian Grand Prix
+
+```{r Russian_Grand_Prix, echo=FALSE}
+plot_lap_times('Russian Grand Prix')
+```
+
+## Eifel Grand Prix
+
+```{r Eifel_Grand_Prix, echo=FALSE}
+plot_lap_times('Eifel Grand Prix')
+```
+
+## Portuguese Grand Prix
+
+```{r Portuguese_Grand_Prix, echo=FALSE}
+plot_lap_times('Portuguese Grand Prix')
+```
+
+## Emilia Romagna Grand Prix
+
+```{r Emilia_Romagna_Grand_Prix, echo=FALSE}
+plot_lap_times('Emilia Romagna Grand Prix')
+```
+
+## Turkish Grand Prix
+
+```{r Turkish_Grand_Prix, echo=FALSE}
+plot_lap_times('Turkish Grand Prix')
+```
+
+## Bahrain Grand Prix
+
+```{r Bahrain_Grand_Prix, echo=FALSE}
+plot_lap_times('Bahrain Grand Prix')
+```
+
+## Sakhir Grand Prix
+
+```{r Sakhir_Grand_Prix, echo=FALSE}
+plot_lap_times('Sakhir Grand Prix')
+```
+
+## Abu Dhabi Grand Prix
+
+```{r Abu_Dhabi_Grand_Prix, echo=FALSE}
+plot_lap_times('Abu Dhabi Grand Prix')
+```
+
